@@ -1,33 +1,35 @@
 "use client";
-import { SidebarGroup, SidebarGroupContent, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "@/components/ui/sidebar";
-import { FlameIcon, HomeIcon, PlaySquareIcon } from "lucide-react";
+import { SidebarGroup, SidebarGroupContent, SidebarGroupLabel, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "@/components/ui/sidebar";
+import { HistoryIcon, ListVideoIcon, ThumbsUpIcon } from "lucide-react";
 import Link from "next/link";
 
 const Items = [
     {
-        title: "Home",
-        url: "/",
-        icon: HomeIcon,
+        title: "History",
+        url: "/playlist/history",
+        icon: HistoryIcon,
+        auth: true,
 
     },
     {
-        title: "Subscriptions",
-        url: "/feed/subscriptions",
-        icon: PlaySquareIcon,
-
+        title: "Liked Videos",
+        url: "/playlist/liked",
+        icon: ThumbsUpIcon,
+        auth: true,
     },
     {
-        title: "Trending",
-        url: "/feed/trending",
-        icon: FlameIcon,
-
+        title: "All PlayLists",
+        url: "/playlists/all",
+        icon: ListVideoIcon,
+        auth: true,
     },
 ]
 
 
-const MainSection = () => {
+const PersonalSection = () => {
     return (
         <SidebarGroup>
+            <SidebarGroupLabel>You</SidebarGroupLabel>
             <SidebarGroupContent>
                 <SidebarMenu>{Items.map((items) => (
                     <SidebarMenuItem key={items.title}>
@@ -42,4 +44,4 @@ const MainSection = () => {
         </SidebarGroup>
     )
 }
-export default MainSection;
+export default PersonalSection;
