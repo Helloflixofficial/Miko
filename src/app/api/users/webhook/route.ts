@@ -6,7 +6,7 @@ import { users } from '@/db/schema'
 import { eq } from 'drizzle-orm'
 
 export async function POST(req: Request) {
-    const SIGNING_SECRET = process.env.SIGNING_SECRET
+    const SIGNING_SECRET = process.env.CLERK_SIGNING_KEY
     if (!SIGNING_SECRET) {
         throw new Error('Error: Please add SIGNING_SECRET from Clerk Dashboard to .env or .env')
     }
