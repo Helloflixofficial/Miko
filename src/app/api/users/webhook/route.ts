@@ -7,10 +7,10 @@ import { eq } from 'drizzle-orm'
 
 export async function POST(req: Request) {
     const SIGNING_SECRET = process.env.CLERK_SIGNING_KEY
+
     if (!SIGNING_SECRET) {
         throw new Error('Error: Please add SIGNING_SECRET from Clerk Dashboard to .env or .env')
     }
-
 
     // Create new Svix instance with secret
     const wh = new Webhook(SIGNING_SECRET)
@@ -31,6 +31,7 @@ export async function POST(req: Request) {
     // Get body
     const payload = await req.json()
     const body = JSON.stringify(payload)
+
     let evt: WebhookEvent
 
     // Verify payload with headers
@@ -49,7 +50,12 @@ export async function POST(req: Request) {
 
     // Do something with payload
     // For this guide, log payload to console
+    // const { id } = evt.data
     const eventType = evt.type
+
+
+
+
     if (eventType === "user.created") {
         const { data } = evt
         await db.insert(users).values({
@@ -78,5 +84,8 @@ export async function POST(req: Request) {
             .where(eq(users.clerkId, data.id))
 
     }
+
+
     return new Response('Webhook received', { status: 200 })
 }
+
