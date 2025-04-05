@@ -1,12 +1,26 @@
-// "use client";
-import { trpc } from "@/trpc/server";
+import { HydrateClient, trpc } from "@/trpc/server";
+import { Client } from "./client";
+import { Suspense } from "react";
+import { ErrorBoundary } from "react-error-boundary";
 export default async function Home() {
-  const data = await trpc.hello({ text: "Boby" });
+  void trpc.hello.prefetch({ text: "Boby" });
   return (
-    <>
-      <p className="text-xl font-semibold tracking-tight">
-        Firetube Content: {data.greeting}
-      </p>
-    </>
+    <HydrateClient>
+      <Suspense
+        fallback={
+          <p className="text-xl font-semibold tracking-tight">Loading...</p>
+        }
+      >
+        <ErrorBoundary
+          fallback={
+            <p className="text-xl font-semibold tracking-tight">Erorr..</p>
+          }
+        >
+          <p className="text-xl font-semibold tracking-tight">
+            Firetube Content: <Client />
+          </p>
+        </ErrorBoundary>
+      </Suspense>
+    </HydrateClient>
   );
 }

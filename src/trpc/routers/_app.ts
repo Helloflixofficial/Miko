@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import { baseProcedure, createTRPCRouter } from '../init';
+// import { TRPCError } from '@trpc/server';
 export const appRouter = createTRPCRouter({
     hello: baseProcedure
         .input(
@@ -8,8 +9,11 @@ export const appRouter = createTRPCRouter({
             }),
         )
         .query((opts) => {
+
+            // throw new TRPCError({ code: "BAD_REQUEST" })
+
             return {
-                greeting: `Hello ${opts.input.text}`,
+                greeting: `Hello: ${opts.input.text}`,
             };
         }),
 });
