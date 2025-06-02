@@ -34,7 +34,7 @@ const CategoriesSectionSuspense = ({ categoryId }: CategoriesSectionProps) => {
     const url = new URL(window.location.href);
 
     if (value) {
-      url.searchParams.set("CategoryId", value);
+      url.searchParams.set("categoryId", value);
     } else {
       url.searchParams.delete("categoryId");
     }
