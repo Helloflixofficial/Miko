@@ -3,17 +3,11 @@ import { Button } from "@/components/ui/button";
 import { ClapperboardIcon, UserCircle } from "lucide-react";
 import React from "react";
 import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
-import Link from "next/link";
+// import Link from "next/link";
 const Authbutton = () => {
   return (
     <>
       <SignedIn>
-        <Button asChild variant="secondary">
-          <Link href="/studio">
-            <ClapperboardIcon />
-            Uploads
-          </Link>
-        </Button>
         <UserButton>
           <UserButton.MenuItems>
             {/* add user profile */}
