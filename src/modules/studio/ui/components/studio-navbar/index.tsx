@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { LogInIcon } from "lucide-react";
 import Authbutton from "@/modules/auth/ui/auth-button";
+import { StudioUploadModel } from "../studio-upload-model";
 const StudioNavbar = () => {
   return (
     <>
@@ -27,6 +28,9 @@ const StudioNavbar = () => {
                 Exit Studio
               </Link>
             </Button>
+            <div>
+              <StudioUploadModel />
+            </div>
             <div>
               <Authbutton />
             </div>
