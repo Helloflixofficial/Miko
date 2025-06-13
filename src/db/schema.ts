@@ -11,7 +11,7 @@ export const users = pgTable("users", {
     updatedAt: timestamp("updated_at").defaultNow().notNull(),
 }, (t) => [uniqueIndex("cleak_id_idx").on(t.clerkId)])
 
-
+export const userRelations = relations(users, ({ many }) => ({ videos: many(videos) }))
 
 export const categories = pgTable("categories", {
     id: uuid("id").primaryKey().defaultRandom(),
@@ -27,12 +27,14 @@ export const videos = pgTable("videos", {
     id: uuid("id").primaryKey().defaultRandom(),
     title: text("title").notNull(),
     description: text("description"),
+
     userId: uuid("user_id").references(() => users.id, { onDelete: "cascade" }).notNull(), //we are mergin with users then users.id
+    categoryId: uuid("category_id").references(() => categories.id),
     createdAt: timestamp("createdAt").defaultNow().notNull(),
     updatedAt: timestamp("updatedAt").defaultNow().notNull(),
 })
 
-export const relationse = relations(videos, ({ one, many }) => ({
+export const relationse = relations(videos, ({ one }) => ({
     user: one(users, {
         fields: [videos.userId],
         references: [users.id],
