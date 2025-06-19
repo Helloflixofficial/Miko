@@ -7,11 +7,10 @@ export const studioRouter = createTRPCRouter({
     getMany: protectedProcedure
         .input(
             z.object({
-                cursor: z
-                    .object({
-                        id: z.string().uuid(),
-                        updatedAt: z.date(),
-                    })
+                cursor: z.object({
+                    id: z.string().uuid(),
+                    updatedAt: z.date(),
+                })
                     .nullish(),
                 limit: z.number().min(1).max(100),
             })
