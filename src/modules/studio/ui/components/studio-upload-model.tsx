@@ -10,6 +10,9 @@ export const StudioUploadModel = () => {
       toast.success("Video Created seccessfully");
       utils.studio.getMany.invalidate();
     },
+    onError: (error) => {
+      toast.error(error.message);
+    },
   });
   return (
     <Button

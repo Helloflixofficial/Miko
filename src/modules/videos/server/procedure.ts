@@ -6,6 +6,10 @@ import { videos } from "@/db/schema";
 export const videosRouter = createTRPCRouter({
     create: protectedProcedure.mutation(async ({ ctx }) => {
         const { id: userId } = ctx.user;
+
+
+
+        // throw new Error("Opps")
         const [video] = await db
             .insert(videos)
             .values({
