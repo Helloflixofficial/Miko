@@ -3,7 +3,7 @@ import { SearchIcon } from "lucide-react";
 const Searchbar = () => {
   return (
     <>
-      <form className="flex w-full max-w-[500px]">
+      <form className="flex w-full max-w-[400px]">
         <div className="relative w-full top-3 ">
           <input
             type="text"

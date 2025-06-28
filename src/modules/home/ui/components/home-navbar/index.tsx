@@ -8,13 +8,13 @@ import { ClapperboardIcon } from "lucide-react";
 const HomeNavbar = () => {
   return (
     <>
-      <nav className="flex items-center fixed top-0 left-0 right-0 h-16 px-2 pr-5 bg-[#EBE5C2] z-50">
-        <div className="flex item-center gap-4 w-full">
+      <nav className="fixed flex items-center top-0 left-0 right-0 h-16 px-2 pr-5 bg-[#EBE5C2] z-50">
+        <div className="flex  item-center gap-4 w-full">
           <div className="flex items-center flex-shrink-0">
             <SidebarTrigger />
             <Link href="/">
-              <div className="p-4 flex items-center gap-2">
-                <Image src="/logo.svg" width={30} height={30} alt="Logo" />
+              <div className="p-4 flex items-center gap-1">
+                <Image src="/logo.svg" width={32} height={32} alt="Logo" />
                 <p className="text-xl font-semibold tracking-tight">Firetube</p>
               </div>
             </Link>
