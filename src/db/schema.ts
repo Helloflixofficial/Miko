@@ -26,7 +26,7 @@ export const videos = pgTable("videos", {
     title: text("title").notNull(),
     description: text("description"),
     userId: uuid("user_id").references(() => users.id, { onDelete: "cascade" }).notNull(),
-    categoryId: uuid("category_id").references(() => categories.id, { onDelete: "set null" }), //idk now
+    categoryId: uuid("category_id").references(() => categories.id, { onDelete: "set null" }),  //idk now
     createdAt: timestamp("createdAt").defaultNow().notNull(),
     updatedAt: timestamp("updatedAt").defaultNow().notNull(),
 });
