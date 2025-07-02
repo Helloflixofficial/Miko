@@ -5,6 +5,15 @@ import { trpc } from "@/trpc/client";
 import { ErrorBoundary } from "react-error-boundary";
 import { Suspense } from "react";
 import { InfiniteScroll } from "@/components/infinite-scroll";
+import {
+  Table,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableBody,
+  TableRow,
+} from "@/components/ui/table";
+import Link from "next/link";
 export const VideosSection = async () => {
   return (
     <Suspense fallback={<p>Loading..</p>}>
@@ -16,13 +25,45 @@ export const VideosSection = async () => {
 };
 
 export const VideosSectionSuspense = async () => {
-  const [data, query] = trpc.studio.getMany.useSuspenseInfiniteQuery(
+  const [videos, query] = trpc.studio.getMany.useSuspenseInfiniteQuery(
     { limit: DEFAULT_LIMIT },
     { getNextPageParam: (lastPage) => lastPage.nextCursor }
   );
   return (
-    <div>
-      {JSON.stringify(data)}
+    <div className="border-y">
+      <TableHeader>
+        <TableRow>
+          <TableHead className="pl-6 w-[510px]">videos</TableHead>
+          <TableHead>visibuilty</TableHead>
+          <TableHead>Status</TableHead>
+          <TableHead>Date</TableHead>
+          <TableHead className="text-right">Views</TableHead>
+          <TableHead className="text-right">Comments</TableHead>
+          <TableHead className="text-right pr-6">Likes</TableHead>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        {videos.pages
+          .flatMap((page) => page.items)
+          .map((video) => (
+            <Link
+              href={`/videos/studio/${video.id}`}
+              key={video.id}
+              legacyBehavior
+            >
+              <TableRow className="cursor-pointer">
+                <TableCell>{video.id}</TableCell>
+                <TableCell>Visibility</TableCell>
+                <TableCell>Status</TableCell>
+                <TableCell>Date</TableCell>
+                <TableCell>Views</TableCell>
+                <TableCell>Comments</TableCell>
+                <TableCell>Likes</TableCell>
+              </TableRow>
+            </Link>
+          ))}
+      </TableBody>
+
       {
         <InfiniteScroll
           isManual
