@@ -1,4 +1,5 @@
 "use client";
+import { ResponsiveModal } from "@/components/responsive-modal";
 import { Button } from "@/components/ui/button";
 import { trpc } from "@/trpc/client";
 import { Loader2Icon, PlusIcon } from "lucide-react";
@@ -15,17 +16,22 @@ export const StudioUploadModel = () => {
     },
   });
   return (
-    <Button
-      variant="secondary"
-      onClick={() => create.mutate()}
-      disabled={create.isPending}
-    >
-      {create.isPending ? (
-        <Loader2Icon className="animate=-spin" />
-      ) : (
-        <PlusIcon />
-      )}
-      Create
-    </Button>
+    <>
+      <ResponsiveModal title="uploade the video" open onOpenChange={() => {}}>
+        <p>this is uploader</p>
+      </ResponsiveModal>
+      <Button
+        variant="secondary"
+        onClick={() => create.mutate()}
+        disabled={create.isPending}
+      >
+        {create.isPending ? (
+          <Loader2Icon className="animate=-spin" />
+        ) : (
+          <PlusIcon />
+        )}
+        Create
+      </Button>
+    </>
   );
 };

@@ -6,7 +6,6 @@ import { ErrorBoundary } from "react-error-boundary";
 import { Suspense } from "react";
 import { InfiniteScroll } from "@/components/infinite-scroll";
 import {
-  Table,
   TableCell,
   TableHead,
   TableHeader,
