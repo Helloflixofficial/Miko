@@ -63,14 +63,12 @@ export const VideosSectionSuspense = async () => {
           ))}
       </TableBody>
 
-      {
-        <InfiniteScroll
-          isManual
-          hasNextPage={query.hasNextPage}
-          isFetchingNextPage={query.isFetchingNextPage}
-          fetchNextPage={query.fetchNextPage}
-        />
-      }
+      <InfiniteScroll
+        isManual
+        hasNextPage={query.hasNextPage}
+        isFetchingNextPage={query.isFetchingNextPage}
+        fetchNextPage={query.fetchNextPage}
+      />
     </div>
   );
 };

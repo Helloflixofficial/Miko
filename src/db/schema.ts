@@ -36,7 +36,7 @@ export const userRelations = relations(users, ({ many }) => ({
     videos: many(videos),
 }));
 
-export const categoryRelations = relations(categories, ({ many }) => ({
+export const categoryRelations = relations(users, ({ many }) => ({
     videos: many(videos),
 }));
 
